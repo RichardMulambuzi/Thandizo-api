@@ -8,9 +8,6 @@ import { ThandizoUser } from './shared/User.staff.entity';
 import { RealTimeUpdateService } from './resource/real-time-update.service';
 import { ResourceController } from './resource/resource.controller';
 import { ResourceService } from './resource/resource.service';
-import { PopulationDataController } from './population/population.controler';
-import { PopulationData } from './population/population.model';
-import { PopulationDataService } from './population/population.service';
 import { ResourceInventory } from './resource/model/Inventory.model';
 import { Alert } from './alets/alets.model';
 import { AlertService } from './alets/alet.service';
@@ -24,7 +21,8 @@ import { AlertController } from './alets/alets.controller';
       username: 'thandizo_db_user',
       password: 'YeD9ChRVvpiL7wigCxEc1SC7fsCrTSXk',
       database: 'thandizo_db',
-      entities: [ThandizoUser, ResourceInventory, Alert, PopulationData], // Use the ThandizoUser entity here
+      url:'postgres://thandizo_db_user:YeD9ChRVvpiL7wigCxEc1SC7fsCrTSXk@dpg-cof8sl779t8c73cen460-a/thandizo_db',
+      entities: [ThandizoUser, ResourceInventory,Alet], // Use the ThandizoUser entity here
       synchronize: true, // Set to false in production
       ssl: true, // Enable SSL/TLS
       extra: {
@@ -47,12 +45,10 @@ import { AlertController } from './alets/alets.controller';
     TypeOrmModule.forFeature([
       ThandizoUser,
       ResourceInventory,
-      PopulationData,
       Alert,
     ]),
   ],
   providers: [
-    PopulationDataService,
     StaffService,
     AppService,
     RealTimeUpdateService,
@@ -60,7 +56,6 @@ import { AlertController } from './alets/alets.controller';
     AlertService,
   ],
   controllers: [
-    PopulationDataController,
     StaffController,
     ResourceController,
     AppController,
